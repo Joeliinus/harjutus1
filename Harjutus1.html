@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <title>Title</title>
+    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
+<ul>
+    <li>Võlgnike Nimekiri</li>
+    <li>
+        <!-- Uue võlgniku lisamise vorm -->
+        <form action="#" method="post">
+            <label for="name">Võlgniku nimi</label>
+            <input type="text" name="name" id="name">
+            <button type="submit">Lisa võlgnik</button>
+        </form>
+    </li>
+    <li>
+        <!-- Nupp võlgniku lisamiseks -->
+        <button onclick="addVõlgnik()">Lisa võlgnik</button>
+    </li>
+    <li>
+        <script>
+            const võlgnikud = [
+                { id: 1, name: 'Bob' },
+                { id: 2, name: 'Bobs' },
+                { id: 3, name: 'Bobby' },
+            ]
 
+            function addVõlgnik () {
+                const võlgnik = { id: võlgnikud.lenght + 1, name: 'Uus võlgnik' }
+                võlgnikud.push(võlgnik)
+                console.log(võlgnikud)
+            }
+        </script>
+    </li>
+</ul>
 </body>
 </html>
