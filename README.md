@@ -1,1 +1,0 @@
-# harjutus1
