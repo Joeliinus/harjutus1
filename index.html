@@ -1,40 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
-    <!--content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"-->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Võlgnike jälgimine</title>
+    <style>
+        body {
+            font-family: Times New Roman, Times, serif;
+            background-color: #e2e0e6;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        hi {
+            text-align: center;
+            color: black;
+            font-size: 48px;
+        }
+
+        #volgnikeTabel {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        #volgnikeTabel th, #volgnikeTabel td {
+            border: 2px solid black;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #volgnikeTabel th {
+            background-color: #c0392b;
+            color: white;
+        }
+
+        input, button {
+            padding: 5px;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: bold;
+
+        }
+
+        .deleteButton {
+            bakcround-color: #e74c3c;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+            font-size: 14;
+            font-weight: bold;
+        }
+
+
+    </style>
 </head>
 <body>
-<ul>
-    <li>Võlgnike Nimekiri</li>
-    <li>
-        <!-- Uue võlgniku lisamise vorm -->
-        <form action="#" method="post">
-            <label for="name">Võlgniku nimi</label>
-            <input type="text" name="name" id="name">
-            <button type="submit">Lisa võlgnik</button>
-        </form>
-    </li>
-    <li>
-        <!-- Nupp võlgniku lisamiseks -->
-        <button onclick="addVõlgnik()">Lisa võlgnik</button>
-    </li>
-    <li>
-        <script>
-            const võlgnikud = [
-                { id: 1, name: 'Bob' },
-                { id: 2, name: 'Bobs' },
-                { id: 3, name: 'Bobby' },
-            ]
 
-            function addVõlgnik () {
-                const võlgnik = { id: võlgnikud.lenght + 1, name: 'Uus võlgnik' }
-                võlgnikud.push(võlgnik)
-                console.log(võlgnikud)
+<h1>Panga võlgnike nimekiri</h1>
+
+<!-- Uue võlgniku lisamise vorm -->
+<form id="volgnikuVorm">
+    <label for="nimi">Võlgniku nimi:</label>
+    <input type="text" id="nimi" placeholder="Sisestage nimi siia" required>
+    <br>
+    <label for="volg">Võlg (eurodes):</label>
+    <input type="number" id="volg" placeholder="Sisestage võla kogus siia" required>
+    <br>
+    <button type="button" onclick="lisaVolgnik()">LISA VÕLGNIK</button>
+</form>
+
+<!-- Tabel võlgnike ja võlgade jaoks -->
+<table id="VolgnikeTabel">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Võlgnik</th>
+        <th>Võlg (EUR)</th>
+        <th>Eemaldamine</th>
+    </tr>
+    </thead>
+    <tbody id="volgnikeKonteiner">
+    <!-- Siia lisatakse võlgnikud -->
+    </tbody>
+</table>
+<script>
+        let volgnikud = [];
+        let counter = 1;
+
+        function lisaVolgnik() {
+            // Võta sisendid
+            const nimi = document.getElementById('nimi').value;
+            const volg = document.getElementById('volg').value;
+
+            // Kontrolli, et mõlemad väljad on täidetud
+            if (!nimi || !volg) {
+                alert('Kõik väljad pole täidetud!');
+                return;
             }
-        </script>
-    </li>
-</ul>
+
+            // Loo võlgniku objekt ja lisa massiivi
+            const volgnik = { id: counter++, nimi: nimi, volg: volg };
+            volgnikud.push(volgnik);
+
+            // Uuenda tabelit
+            uuendaTabel();
+
+            // Tühjenda vormi väljad
+            document.getElementById('nimi').value = '';
+            document.getElementById('volg').value = '';
+        }
+
+        function uuendaTabel() {
+            const volgnikeKonteiner = document.getElementById('volgnikeKonteiner');
+            volgnikeKonteiner.innerHTML = ''; // Puhasta vana sisu
+
+            volgnikud.forEach(volgnik => {
+                const rida = document.createElement('tr');
+                rida.innerHTML = `
+                    <td>${volgnik.id}</td>
+                    <td>${volgnik.nimi}</td>
+                    <td>${volgnik.volg} €</td>
+                    <td><button class="deleteButton" onclick="eemaldaVolgnik(${volgnik.id})">EEMALDA VÕLGNIK</button></td>
+                `;
+                volgnikeKonteiner.appendChild(rida);
+            });
+        }
+
+        function eemaldaVolgnik(id) {
+            // Eemalda võlgnik id järgi
+            volgnikud = volgnikud.filter(volgnik => volgnik.id !== id);
+            uuendaTabel(); // Uuenda tabelit
+        }
+
+</script>
+
 </body>
 </html>
