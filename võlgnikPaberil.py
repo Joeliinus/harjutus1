@@ -1,24 +1,31 @@
-import pygame
 import sys
+
+import pygame
+
 pygame.init()
+
 
 class Sisend:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
     def liitmine(self):
         return self.x + " - " + self.y
 
-while True:       # while tsukkel vale sisestuse jaoks
-    def menuu():      # loob menuu funktsiooni
+
+while True:  # while tsukkel vale sisestuse jaoks
+    def menuu():  # loob menuu funktsiooni
         markus = "\nKas soovid võlgniku nime ja võla sisestada? \n1 = jah, 2 = ei"
-        print(markus)     # väljastab märkusele määratud teksti
-    menuu()      # viitab menuu funktsioonile ja kutsub selle välja
-    valitu = int(input("Avalda oma soov (1 v 2): "))     # kasutaja sisestab arvu, sisestatud arv on valituga võrdne
+        print(markus)  # väljastab märkusele määratud teksti
+
+
+    menuu()  # viitab menuu funktsioonile ja kutsub selle välja
+    valitu = int(input("Avalda oma soov (1 v 2): "))  # kasutaja sisestab arvu, sisestatud arv on valituga võrdne
     valimatu = str("\nValitu ei vasta ühegi antud võimalusega!")
     valimatu2 = str("\nViimane võimalus 1 valikutest valida!")
 
-    if valitu == 1:     # kui valitu on võrdeline arvuga 1
+    if valitu == 1:  # kui valitu on võrdeline arvuga 1
         x = input("\nSisesta võlgniku nimi: ")
         y = input("Ja temale kuuluv võlg: ")
         paber = Sisend(x, y)
