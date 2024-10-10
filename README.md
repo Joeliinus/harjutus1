@@ -1,8 +1,8 @@
-# Panga võrgnike arveldussüsteem
+# Panga võlgnike arveldussüsteem
 
 ## Kirjeldus
 
-Panga võrgnike arveldussüsteem on veebirakendus, mis aitab pangatöötajatel pidada järge neile võlgu olevate klientide üle. Töötaja saab sisestada võlgniku ja tegamaga seostuva võla. Võla tasumise korral saab töötaja võlgniku tabelist eemaldada.
+Panga võlgnike arveldussüsteem on veebirakendus, mis aitab pangatöötajatel pidada järge neile võlgu olevate klientide üle. Töötaja saab sisestada võlgniku ja temaga seostuva võla. Võla tasumise korral saab töötaja võlgniku tabelist eemaldada.
 
 ## Kasutamine
 
